@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Super Cars & Motorcycles</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+    color: white;
+    background: radial-gradient(circle at center, #080808 0%, #000000 70%);
+    overflow-x: hidden;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    background: rgba(0,0,0,0.7);
+    padding: 20px 40px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,0,0,0.3);
+    z-index: 10;
+}
+
+.nav-left {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.nav-right a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-right a:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(0,0,0,0.8));
+    background-size: cover;
+    animation: backgroundShift 10s infinite alternate;
+}
+
+@keyframes backgroundShift {
+    0% { background-position: left; }
+    100% { background-position: right; }
+}
+
+h1 {
+    font-size: 70px;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    color: #ff1e1e;
+    letter-spacing: 4px;
+    text-shadow: 0 0 25px #ff0000, 0 0 45px #ff0000;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
+    to { text-shadow: 0 0 25px #ff0000, 0 0 60px #ff0000; }
+}
+
+.tagline {
+    font-size: 24px;
+    color: #ccc;
+    margin-top: 15px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #fff;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.dropdown-btn {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn .dropdown-content-btn {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: rgba(0,0,0,0.9);
+    min-width: 200px;
+    border-radius: 12px;
+    padding: 10px;
+    z-index: 1000;
+    text-align: left;
+    box-shadow: 0 0 25px rgba(255,0,0,0.6);
+}
+
+.dropdown-btn:hover .dropdown-content-btn {
+    display: block;
+}
+
+.dropdown-btn .dropdown-content-btn a {
+    display: block;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.dropdown-btn .dropdown-content-btn a:hover {
+    background: rgba(255,0,0,0.5);
+    transform: scale(1.05);
+}
+
+.btn {
+    padding: 15px 40px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    border: 2px solid #ff0000;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 20px rgba(255,0,0,0.6);
+    background: transparent;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #ff0000;
+    color: black;
+    box-shadow: 0 0 40px #ff0000;
+    transform: scale(1.1);
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    margin: 50px 0 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-left">Home |</div>
+    <div class="nav-right">
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<section class="hero">
+    <h1>Super Machines</h1>
+    <div class="tagline">Speed • Power • Perfection</div>
+
+    <div class="hero-buttons">
+        <div class="dropdown-btn">
+            <button class="btn">Explore Cars</button>
+            <div class="dropdown-content-btn">
+                <a href="Ferrari.html">Ferrari</a>
+                <a href="Bugatti.html">Bugatti</a>
+                <a href="Lamborghini.html">Lamborghini</a>
+                <a href="BMW.html">BMW</a>
+            </div>
+        </div>
+
+        <div class="dropdown-btn">
+            <button class="btn">Explore Motorcycles</button>
+            <div class="dropdown-content-btn">
+                <a href="Bmwmoto.html">BMW</a>
+                <a href="Ducati.html">Ducati</a>
+                <a href="Honda.html">Honda</a>
+                <a href="Kawasaki.html">Kawasaki</a>
+                <a href="Yamaha.html">Yamaha</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>© 2025 Super Machines | Designed by Oudayl</footer>
+
+</body>
+</html>

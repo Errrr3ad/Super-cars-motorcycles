@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(120deg, #001a00, #003300, #004400);
+      background-size: 400% 400%;
+      color: #e0e0e0;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: backgroundMove 6s ease infinite;
+      overflow: hidden;
+    }
+
+    @keyframes backgroundMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      color: #00ff88;
+      font-size: 4em;
+      text-shadow: 0 0 30px #00ff88;
+      opacity: 0;
+      animation: fadeInWelcome 3s ease-in-out forwards;
+    }
+
+    @keyframes fadeInWelcome {
+      0% { opacity: 0; transform: scale(0.8); }
+      40% { opacity: 1; transform: scale(1); }
+      80% { opacity: 0; transform: scale(1.1); }
+      100% { opacity: 0; transform: scale(1.2); }
+    }
+
+    .content {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInContent 2.5s ease-in-out forwards;
+      animation-delay: 3.5s; 
+    }
+
+    @keyframes fadeInContent {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: #00ff88;
+      font-size: 2em;
+      margin: 20px 0;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      border: 1px solid #00ff88;
+      border-radius: 12px;
+      padding: 25px 50px;
+      box-shadow: 0 0 20px #00ff88;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    footer:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #00ff88;
+    }
+
+    a {
+      color: #00ff88;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #music-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(0, 255, 136, 0.2);
+      border: 2px solid #00ff88;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 15px #00ff88;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    #music-toggle:hover {
+      background-color: rgba(0, 255, 136, 0.3);
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #00ff88;
+    }
+
+    #music-toggle:before {
+      content: "🔊"; 
+      font-size: 1.5em;
+    }
+
+    #music-toggle.paused:before {
+      content: "🔇"; 
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Welcome</h1>
+
+  <div class="content">
+    <h2>Contact me</h2>
+    <footer>
+      <p><strong>Name:</strong> Oudayl Jebalia</p>
+      <p><strong>Phone:</strong> 
+        <a href="tel:+21650838024">+216 50 838 024</a>
+      </p>
+      <p><strong>Email:</strong>
+        <a href="mailto:Jebaliaoudayl0@gmail.com">Jebaliaoudayl0@gmail.com</a>
+      </p>
+    </footer>
+  </div>
+
+  <audio id="bg-music" loop muted autoplay>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div id="music-toggle"></div>
+
+  <script>
+    const music = document.getElementById('bg-music');
+    const toggle = document.getElementById('music-toggle');
+
+    toggle.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        music.muted = false;
+        toggle.classList.remove('paused');
+      } else {
+        music.pause();
+        toggle.classList.add('paused');
+      }
+    });
+  </script>
+</body>
+</html>

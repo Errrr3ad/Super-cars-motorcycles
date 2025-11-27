@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BMW Motorcycles</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500&display=swap');
+
+* { transition: all 0.3s ease-in-out; }
+
+body {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #000014 0%, #000033 40%, #000066 100%);
+}
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+    margin-top: 40px;
+    color: #3399ff;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 25px #3399ff, 0 0 50px #0066cc;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #3399ff, 0 0 20px #0066cc; }
+    to { text-shadow: 0 0 25px #66ccff, 0 0 60px #3399ff; }
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -50%;
+    width: 200%; height: 100%;
+    background: radial-gradient(circle at center, rgba(51,153,255,0.1), transparent 60%);
+    animation: moveLight 10s infinite linear;
+    z-index: 0;
+}
+
+@keyframes moveLight {
+    0% { transform: translateX(-20%) translateY(-10%) rotate(0deg); }
+    50% { transform: translateX(20%) translateY(10%) rotate(180deg); }
+    100% { transform: translateX(-20%) translateY(-10%) rotate(360deg); }
+}
+
+.bike-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    justify-items: center;
+    padding: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.bike {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.bike::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    width: 80%;
+    height: 30px;
+    background: radial-gradient(ellipse at center, rgba(51,153,255,0.3) 0%, transparent 80%);
+    filter: blur(8px);
+    border-radius: 50%;
+}
+
+.bike img {
+    width: 350px;
+    border-radius: 12px;
+    border: 3px solid #3399ff;
+    box-shadow: 0 0 25px rgba(51,153,255,0.5);
+    animation: pulse 2s infinite alternate;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes pulse {
+    from { box-shadow: 0 0 15px rgba(51,153,255,0.4); }
+    to { box-shadow: 0 0 35px rgba(51,153,255,0.9); }
+}
+
+.bike img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 60px rgba(51,153,255,0.9);
+}
+
+.bike-name {
+    font-size: 32px;
+    margin-top: 15px;
+    color: #3399ff;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #3399ff, 0 0 35px #0066cc;
+    transition: all 0.3s ease;
+}
+
+.bike-name:hover {
+    color: white;
+    transform: scale(1.1);
+    text-shadow: 0 0 35px #ffffff;
+}
+
+footer {
+    text-align: center;
+    margin: 50px 0;
+    color: #777;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+<h1>BMW Motorcycles</h1>
+
+<div class="bike-container">
+    <div class="bike">
+        <img src="M1000rr.png" alt="BMW M1000rr">
+        <div class="bike-name">BMW M1000rr</div>
+    </div>
+
+    <div class="bike">
+        <img src="s1000rr.png" alt="BMW S1000rr">
+        <div class="bike-name">BMW S1000rr</div>
+    </div>
+
+    <div class="bike">
+        <img src="M1000r.png" alt="BMW M1000r">
+        <div class="bike-name">BMW M1000r</div>
+    </div>
+
+    <div class="bike">
+        <img src="bmw r1200gs.png" alt="BMW R1200GS">
+        <div class="bike-name">BMW R1200GS</div>
+    </div>
+</div>
+
+<footer>
+    © 2025 BMW Motorcycles | Designed by Oudayl
+</footer>
+</body>
+</html>

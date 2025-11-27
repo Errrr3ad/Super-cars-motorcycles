@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BMW Supercars</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #001100, #003300, #006600);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+h1 {
+    text-align: center;
+    font-size: 70px;
+    margin: 50px 0;
+    color: #00ff33;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    animation: titleGlow 3s infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% { text-shadow: 0 0 15px #00aa33, 0 0 30px #00aa33; }
+    50% { text-shadow: 0 0 30px #00cc44, 0 0 60px #00cc44; }
+    100% { text-shadow: 0 0 50px #00ff55, 0 0 100px #00ff55; }
+}
+
+.car-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    padding: 50px;
+    justify-items: center;
+}
+
+.car {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.car-card {
+    width: 340px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+    background: transparent;
+}
+
+.car-card::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    border-radius: 19px;
+    background: linear-gradient(45deg, #006600, #009900, #00cc00, #006600);
+    background-size: 400% 400%;
+    z-index: 2;
+    pointer-events: none;
+    animation: borderAnim 6s linear infinite;
+}
+
+.car-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 3;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.car-card:hover img {
+    transform: rotateY(8deg) scale(1.05);
+    filter: drop-shadow(0 0 30px #00ff33);
+}
+
+@keyframes borderAnim {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.car::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    width: 80%;
+    height: 25px;
+    background: radial-gradient(ellipse at center, rgba(0,255,51,0.3), transparent 80%);
+    filter: blur(8px);
+    border-radius: 50%;
+}
+
+.car-name {
+    margin-top: 15px;
+    font-size: 26px;
+    color: #00ff33;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #00aa33, 0 0 30px #00cc44;
+    transition: transform 0.3s, text-shadow 0.3s;
+}
+
+.car-name:hover {
+    color: #fff;
+    transform: scale(1.1);
+    text-shadow: 0 0 40px #ffffff, 0 0 70px #00ff55;
+}
+
+footer {
+    text-align: center;
+    margin: 50px 0;
+    color: #88ff88;
+    font-size: 18px;
+}
+</style>
+</head>
+<body>
+
+<h1>BMW</h1>
+
+<div class="car-container">
+    <div class="car">
+        <div class="car-card">
+            <a href="m8.html"><img src="m8.png" alt="BMW M8"></a>
+        </div>
+        <div class="car-name">BMW M8 Competition</div>
+    </div>
+
+    <div class="car">
+        <div class="car-card">
+            <a href="m5.html"><img src="m5.png" alt="BMW M5 Competition"></a>
+        </div>
+        <div class="car-name">BMW M5 Competition</div>
+    </div>
+
+    <div class="car">
+        <div class="car-card">
+            <a href="m4.html"><img src="m4cs.png" alt="BMW M4 Competition CS"></a>
+        </div>
+        <div class="car-name">BMW M4 Competition</div>
+    </div>
+
+    <div class="car">
+        <div class="car-card">
+            <a href="m3.html"><img src="m3.png" alt="BMW M3 Competition"></a>
+        </div>
+        <div class="car-name">BMW M3 Competition</div>
+    </div>
+
+    <div class="car">
+        <div class="car-card">
+            <a href="x8.html"><img src="X8.png" alt="BMW X8"></a>
+        </div>
+        <div class="car-name">BMW X8</div>
+    </div>
+</div>
+
+<footer>© 2025 BMW | Designed by Oudayl</footer>
+
+</body>
+</html>

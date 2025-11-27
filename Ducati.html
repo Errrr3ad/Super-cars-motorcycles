@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ducati Motorcycles</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500&display=swap');
+
+        * {
+            transition: all 0.3s ease-in-out;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Rajdhani', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+            background: #000;
+        }
+
+        h1 {
+            font-size: 60px;
+            text-align: center;
+            margin-top: 40px;
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
+            to { text-shadow: 0 0 25px #ff0000, 0 0 60px #ff0000; }
+        }
+
+        /* Dropdown Style */
+        .theme-selector {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        select {
+            background-color: #111;
+            color: #ff0000;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            font-size: 18px;
+            padding: 8px 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        select:hover {
+            background-color: #ff0000;
+            color: #000;
+        }
+
+        .bike-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            justify-items: center;
+            padding: 50px;
+        }
+
+        .bike {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .bike img {
+            width: 350px;
+            border-radius: 10px;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0 0 10px rgba(255,0,0,0.4); }
+            to { box-shadow: 0 0 25px rgba(255,0,0,1); }
+        }
+
+        .bike img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 45px rgba(255, 0, 0, 0.9);
+        }
+
+        .bike-name {
+            font-size: 32px;
+            margin-top: 10px;
+            color: #ff3b3b;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #ff0000, 0 0 25px #ff0000;
+        }
+
+        .bike-name:hover {
+            color: white;
+            transform: scale(1.1);
+            text-shadow: 0 0 25px #ffffff;
+        }
+
+        footer {
+            text-align: center;
+            margin: 50px 0;
+            color: #777;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        /* === THEME STYLES === */
+
+        /* 1. Red Energy */
+        .theme-red {
+            background: linear-gradient(135deg, #1a0000 0%, #330000 40%, #660000 100%);
+        }
+
+        .theme-red::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,0,0,0.15), transparent 60%);
+            animation: moveLight 8s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes moveLight {
+            0% { transform: translateX(-20%) translateY(-10%) rotate(0deg); }
+            50% { transform: translateX(20%) translateY(10%) rotate(180deg); }
+            100% { transform: translateX(-20%) translateY(-10%) rotate(360deg); }
+        }
+
+        /* 2. Carbon Fiber */
+        .theme-carbon {
+            background-color: #0a0a0a;
+            background-image: repeating-linear-gradient(
+                45deg,
+                #111 0px,
+                #111 10px,
+                #0c0c0c 10px,
+                #0c0c0c 20px
+            );
+        }
+
+        /* 3. Futuristic Neon Garage */
+        .theme-neon {
+            background: radial-gradient(circle at center, #0a0a0a 0%, #000 80%);
+            background-image:
+                linear-gradient(90deg, rgba(255,0,0,0.1) 1px, transparent 1px),
+                linear-gradient(rgba(255,0,0,0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+    </style>
+</head>
+
+<body class="theme-red">
+
+    <h1>Ducati Motorcycles</h1>
+
+    <div class="bike-container">
+        <div class="bike">
+            <img src="v4.png" alt="Panigale V4 Superleggera">
+            <div class="bike-name">Ducati Panigale V4 Superleggera</div>
+        </div>
+
+        <div class="bike">
+            <img src="Ducati.png" alt="Panigale V4">
+            <div class="bike-name">Ducati Panigale V4</div>
+        </div>
+
+        <div class="bike">
+            <img src="v2.png" alt="Panigale V2">
+            <div class="bike-name">Ducati Panigale V2</div>
+        </div>
+
+        <div class="bike">
+            <img src="streetfighter.png" alt="Streetfighter V4">
+            <div class="bike-name">Ducati Streetfighter V4</div>
+        </div>
+
+        <div class="bike">
+            <img src="ducatiscrambler.png" alt="Ducati Scrambler">
+            <div class="bike-name">Ducati Scrambler</div>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Ducati Motorcycles | Designed by Oudayl
+    </footer>
+
+    <script>
+        const select = document.getElementById('themeSelect');
+        const body = document.body;
+
+        select.addEventListener('change', () => {
+            body.className = select.value;
+        });
+    </script>
+
+</body>
+</html>

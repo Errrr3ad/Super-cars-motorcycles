@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Honda Motorcycles</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500&display=swap');
+
+* { transition: all 0.3s ease-in-out; }
+
+body {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #1a0000 0%, #330000 40%, #660000 100%);
+}
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+    margin-top: 40px;
+    color: #ff3333;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 25px #ff3333, 0 0 50px #ff3333;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff3333, 0 0 20px #ff3333; }
+    to { text-shadow: 0 0 25px #ff3333, 0 0 60px #ff3333; }
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -50%;
+    width: 200%; height: 100%;
+    background: radial-gradient(circle at center, rgba(255,51,51,0.1), transparent 60%);
+    animation: moveLight 10s infinite linear;
+    z-index: 0;
+}
+
+@keyframes moveLight {
+    0% { transform: translateX(-20%) translateY(-10%) rotate(0deg); }
+    50% { transform: translateX(20%) translateY(10%) rotate(180deg); }
+    100% { transform: translateX(-20%) translateY(-10%) rotate(360deg); }
+}
+
+.bike-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    justify-items: center;
+    padding: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.bike {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.bike::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    width: 80%;
+    height: 30px;
+    background: radial-gradient(ellipse at center, rgba(255,51,51,0.3) 0%, transparent 80%);
+    filter: blur(8px);
+    border-radius: 50%;
+}
+
+.bike img {
+    width: 350px;
+    border-radius: 12px;
+    border: 3px solid #ff3333;
+    box-shadow: 0 0 25px rgba(255,51,51,0.5);
+    animation: pulse 2s infinite alternate;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes pulse {
+    from { box-shadow: 0 0 15px rgba(255,51,51,0.4); }
+    to { box-shadow: 0 0 35px rgba(255,51,51,0.9); }
+}
+
+.bike img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 60px rgba(255,51,51,0.9);
+}
+
+.bike-name {
+    font-size: 32px;
+    margin-top: 15px;
+    color: #ff3333;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #ff3333, 0 0 35px #ff3333;
+    transition: all 0.3s ease;
+}
+
+.bike-name:hover {
+    color: white;
+    transform: scale(1.1);
+    text-shadow: 0 0 35px #ffffff;
+}
+
+footer {
+    text-align: center;
+    margin: 50px 0;
+    color: #777;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+<h1>Honda Motorcycles</h1>
+
+<div class="bike-container">
+    <div class="bike">
+        <img src="Cbr1000rr.png" alt="Cbr1000rr">
+        <div class="bike-name">Honda Cbr1000rr</div>
+    </div>
+
+    <div class="bike">
+        <img src="cb1000r.png" alt="Cb1000r">
+        <div class="bike-name">Honda Cb1000r 2016</div>
+    </div>
+
+    <div class="bike">
+        <img src="cb1000r2023.png" alt="Cb1000r2023">
+        <div class="bike-name">Honda Cb1000r 2023</div>
+    </div>
+
+    <div class="bike">
+        <img src="Africatwins.png" alt="Africatwins">
+        <div class="bike-name">Honda Africatwins</div>
+    </div>
+</div>
+
+<footer>
+    © 2025 Honda Motorcycles | Designed by Oudayl
+</footer>
+</body>
+</html>

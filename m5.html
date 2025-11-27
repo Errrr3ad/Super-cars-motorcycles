@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BMW M5 Futuristic Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(ellipse at center, #0a0a0a, #1a1a1a);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+#particles {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index: -1;
+    background: radial-gradient(circle, #0a0a0a, #1a1a1a);
+}
+
+header {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+header video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.6) contrast(1.0) saturate(1.4); 
+}
+header::after {
+    content:''; 
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.1); 
+}
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:50px;
+}
+
+.car-card {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 40px rgba(0,255,255,0.2);
+    overflow: hidden;
+    perspective: 1500px;
+    transition: transform 0.5s;
+}
+.car-card:hover {transform: translateY(-10px) rotateY(5deg);}
+
+.car-card img {
+    width: 50%;
+    object-fit: contain;
+    animation: floatCar 3s ease-in-out infinite alternate;
+}
+@keyframes floatCar {
+    0% {transform: translateY(0px);}
+    50% {transform: translateY(-15px);}
+    100% {transform: translateY(0px);}
+}
+
+.car-info {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+}
+
+.price {
+    font-size: 42px;
+    font-weight: 700;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #ff00ff;
+    animation: glow 2s infinite alternate;
+}
+@keyframes glow {
+    0% {text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #ff00ff;}
+    50% {text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #ff00ff;}
+    100% {text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #ff00ff;}
+}
+
+#countrySearch {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 1px solid #00ffff;
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+}
+#countrySearch:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+#currencyList {
+    max-height: 180px;
+    overflow-y: auto;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid #00ffff;
+}
+#currencyList div {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+#currencyList div:hover {
+    background: rgba(0,255,255,0.2);
+}
+
+.buy-btn {
+    padding: 16px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    border:none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(45deg,#00ffff,#ff00ff);
+    box-shadow: 0 0 15px #00ffff, 0 0 30px #ff00ff;
+    animation: pulse 2s infinite alternate;
+    transition: transform 0.3s;
+}
+.buy-btn:hover {
+    transform: scale(1.1);
+}
+@keyframes pulse {
+    0% {box-shadow: 0 0 15px #00ffff, 0 0 30px #ff00ff;}
+    50% {box-shadow: 0 0 25px #00ffff, 0 0 50px #ff00ff;}
+    100% {box-shadow: 0 0 15px #00ffff, 0 0 30px #ff00ff;}
+}
+
+@media(max-width: 1000px){
+    .car-card {flex-direction: column; align-items:center;}
+    .car-card img, .car-info {width:100%; text-align:center;}
+}
+
+footer {
+    text-align:center;
+    padding:20px;
+    color:#888;
+    font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<header>
+    <video autoplay muted loop>
+        <source src="m5.mp4" type="video/mp4">
+    </video>
+</header>
+
+<main>
+    <h1 style="text-align:center; margin-bottom:30px;">BMW M5 Competition</h1>
+
+    <div class="car-card">
+        <img src="m5.png" alt="BMW M5">
+        <div class="car-info">
+            <div class="price" id="price">$110,000</div>
+            <input type="text" id="countrySearch" placeholder="Search your currency">
+            <div id="currencyList"></div>
+            <button class="buy-btn">Buy Now</button>
+        </div>
+    </div>
+</main>
+
+<footer>© 2025 BMW | Designed by Oudayl</footer>
+
+<script>
+let basePriceUSD = 110000;
+
+const countries = [
+ {name:"Afghanistan", code:"AFN", rate:86.7},
+  {name:"Albania", code:"ALL", rate:107.5},
+  {name:"Algeria", code:"DZD", rate:136.5},
+  {name:"Andorra", code:"EUR", rate:0.91},
+  {name:"Angola", code:"AOA", rate:830},
+  {name:"Argentina", code:"ARS", rate:350},
+  {name:"Armenia", code:"AMD", rate:385},
+  {name:"Australia", code:"AUD", rate:1.52},
+  {name:"Austria", code:"EUR", rate:0.91},
+  {name:"Azerbaijan", code:"AZN", rate:1.7},
+  {name:"Bahamas", code:"BSD", rate:1},
+  {name:"Bahrain", code:"BHD", rate:0.38},
+  {name:"Bangladesh", code:"BDT", rate:108.5},
+  {name:"Barbados", code:"BBD", rate:2},
+  {name:"Belarus", code:"BYN", rate:2.6},
+  {name:"Belgium", code:"EUR", rate:0.91},
+  {name:"Belize", code:"BZD", rate:2},
+  {name:"Benin", code:"XOF", rate:603},
+  {name:"Bhutan", code:"BTN", rate:83.5},
+  {name:"Bolivia", code:"BOB", rate:6.9},
+  {name:"Bosnia & Herzegovina", code:"BAM", rate:1.68},
+  {name:"Botswana", code:"BWP", rate:13.3},
+  {name:"Brazil", code:"BRL", rate:5.3},
+  {name:"Brunei", code:"BND", rate:1.36},
+  {name:"Bulgaria", code:"BGN", rate:1.79},
+  {name:"Burkina Faso", code:"XOF", rate:603},
+  {name:"Burundi", code:"BIF", rate:2100},
+  {name:"Cabo Verde", code:"CVE", rate:97},
+  {name:"Cambodia", code:"KHR", rate:4115},
+  {name:"Cameroon", code:"XAF", rate:603},
+  {name:"Canada", code:"CAD", rate:1.36},
+  {name:"Central African Republic", code:"XAF", rate:603},
+  {name:"Chad", code:"XAF", rate:603},
+  {name:"Chile", code:"CLP", rate:802},
+  {name:"China", code:"CNY", rate:7.3},
+  {name:"Colombia", code:"COP", rate:4700},
+  {name:"Comoros", code:"KMF", rate:460},
+  {name:"Congo, Dem. Rep.", code:"CDF", rate:2200},
+  {name:"Congo, Rep.", code:"XAF", rate:603},
+  {name:"Costa Rica", code:"CRC", rate:540},
+  {name:"Croatia", code:"HRK", rate:6.9},
+  {name:"Cuba", code:"CUP", rate:26},
+  {name:"Cyprus", code:"EUR", rate:0.91},
+  {name:"Czech Republic", code:"CZK", rate:23.8},
+  {name:"Denmark", code:"DKK", rate:6.75},
+  {name:"Djibouti", code:"DJF", rate:177},
+  {name:"Dominica", code:"XCD", rate:2.7},
+  {name:"Dominican Republic", code:"DOP", rate:55},
+  {name:"Ecuador", code:"USD", rate:1},
+  {name:"Egypt", code:"EGP", rate:30.9},
+  {name:"El Salvador", code:"USD", rate:1},
+  {name:"Equatorial Guinea", code:"XAF", rate:603},
+  {name:"Eritrea", code:"ERN", rate:15},
+  {name:"Estonia", code:"EUR", rate:0.91},
+  {name:"Eswatini", code:"SZL", rate:18},
+  {name:"Ethiopia", code:"ETB", rate:55},
+  {name:"Fiji", code:"FJD", rate:2.3},
+  {name:"Finland", code:"EUR", rate:0.91},
+  {name:"France", code:"EUR", rate:0.91},
+  {name:"Gabon", code:"XAF", rate:603},
+  {name:"Gambia", code:"GMD", rate:61},
+  {name:"Georgia", code:"GEL", rate:2.65},
+  {name:"Germany", code:"EUR", rate:0.91},
+  {name:"Ghana", code:"GHS", rate:12},
+  {name:"Greece", code:"EUR", rate:0.91},
+  {name:"Grenada", code:"XCD", rate:2.7},
+  {name:"Guatemala", code:"GTQ", rate:7.7},
+  {name:"Guinea", code:"GNF", rate:8900},
+  {name:"Guinea-Bissau", code:"XOF", rate:603},
+  {name:"Guyana", code:"GYD", rate:210},
+  {name:"Haiti", code:"HTG", rate:150},
+  {name:"Honduras", code:"HNL", rate:24},
+  {name:"Hungary", code:"HUF", rate:358},
+  {name:"Iceland", code:"ISK", rate:140},
+  {name:"India", code:"INR", rate:83.5},
+  {name:"Indonesia", code:"IDR", rate:15000},
+  {name:"Iran", code:"IRR", rate:42000},
+  {name:"Iraq", code:"IQD", rate:1450},
+  {name:"Ireland", code:"EUR", rate:0.91},
+  {name:"Israel", code:"ILS", rate:3.65},
+  {name:"Italy", code:"EUR", rate:0.91},
+  {name:"Jamaica", code:"JMD", rate:155},
+  {name:"Japan", code:"JPY", rate:150},
+  {name:"Jordan", code:"JOD", rate:0.71},
+  {name:"Kazakhstan", code:"KZT", rate:470},
+  {name:"Kenya", code:"KES", rate:150},
+  {name:"Kiribati", code:"AUD", rate:1.52},
+  {name:"Kuwait", code:"KWD", rate:0.31},
+  {name:"Kyrgyzstan", code:"KGS", rate:88},
+  {name:"Laos", code:"LAK", rate:17250},
+  {name:"Latvia", code:"EUR", rate:0.91},
+  {name:"Lebanon", code:"LBP", rate:1500},
+  {name:"Lesotho", code:"LSL", rate:18},
+  {name:"Liberia", code:"LRD", rate:160},
+  {name:"Libya", code:"LYD", rate:4.9},
+  {name:"Liechtenstein", code:"CHF", rate:0.92},
+  {name:"Lithuania", code:"EUR", rate:0.91},
+  {name:"Luxembourg", code:"EUR", rate:0.91},
+  {name:"Madagascar", code:"MGA", rate:4150},
+  {name:"Malawi", code:"MWK", rate:1040},
+  {name:"Malaysia", code:"MYR", rate:4.55},
+  {name:"Maldives", code:"MVR", rate:15.5},
+  {name:"Mali", code:"XOF", rate:603},
+  {name:"Malta", code:"EUR", rate:0.91},
+  {name:"Marshall Islands", code:"USD", rate:1},
+  {name:"Mauritania", code:"MRU", rate:38},
+  {name:"Mauritius", code:"MUR", rate:45},
+  {name:"Mexico", code:"MXN", rate:18},
+  {name:"Micronesia", code:"USD", rate:1},
+  {name:"Moldova", code:"MDL", rate:17.5},
+  {name:"Monaco", code:"EUR", rate:0.91},
+  {name:"Mongolia", code:"MNT", rate:3500},
+  {name:"Montenegro", code:"EUR", rate:0.91},
+  {name:"Morocco", code:"MAD", rate:9.8},
+  {name:"Mozambique", code:"MZN", rate:63},
+  {name:"Myanmar", code:"MMK", rate:2090},
+  {name:"Namibia", code:"NAD", rate:18},
+  {name:"Nauru", code:"AUD", rate:1.52},
+  {name:"Nepal", code:"NPR", rate:132},
+  {name:"Netherlands", code:"EUR", rate:0.91},
+  {name:"New Zealand", code:"NZD", rate:1.63},
+  {name:"Nicaragua", code:"NIO", rate:36},
+  {name:"Niger", code:"XOF", rate:603},
+  {name:"Nigeria", code:"NGN", rate:765},
+  {name:"North Macedonia", code:"MKD", rate:55},
+  {name:"Norway", code:"NOK", rate:10},
+  {name:"Oman", code:"OMR", rate:0.39},
+  {name:"Pakistan", code:"PKR", rate:285},
+  {name:"Palau", code:"USD", rate:1},
+  {name:"Palestine", code:"ILS", rate:3.65},
+  {name:"Panama", code:"PAB", rate:1},
+  {name:"Papua New Guinea", code:"PGK", rate:3.5},
+  {name:"Paraguay", code:"PYG", rate:7450},
+  {name:"Peru", code:"PEN", rate:3.8},
+  {name:"Philippines", code:"PHP", rate:56},
+  {name:"Poland", code:"PLN", rate:4.2},
+  {name:"Portugal", code:"EUR", rate:0.91},
+  {name:"Qatar", code:"QAR", rate:3.64},
+  {name:"Romania", code:"RON", rate:4.4},
+  {name:"Russia", code:"RUB", rate:74},
+  {name:"Rwanda", code:"RWF", rate:1050},
+  {name:"Saint Kitts and Nevis", code:"XCD", rate:2.7},
+  {name:"Saint Lucia", code:"XCD", rate:2.7},
+  {name:"Samoa", code:"WST", rate:2.6},
+  {name:"San Marino", code:"EUR", rate:0.91},
+  {name:"Saudi Arabia", code:"SAR", rate:3.75},
+  {name:"Senegal", code:"XOF", rate:603},
+  {name:"Serbia", code:"RSD", rate:107.5},
+  {name:"Seychelles", code:"SCR", rate:14.6},
+  {name:"Sierra Leone", code:"SLL", rate:12500},
+  {name:"Singapore", code:"SGD", rate:1.36},
+  {name:"Slovakia", code:"EUR", rate:0.91},
+  {name:"Slovenia", code:"EUR", rate:0.91},
+  {name:"Solomon Islands", code:"SBD", rate:8.1},
+  {name:"Somalia", code:"SOS", rate:585},
+  {name:"South Africa", code:"ZAR", rate:18.1},
+  {name:"South Korea", code:"KRW", rate:1340},
+  {name:"South Sudan", code:"SSP", rate:130},
+  {name:"Spain", code:"EUR", rate:0.91},
+  {name:"Sri Lanka", code:"LKR", rate:320},
+  {name:"Sudan", code:"SDG", rate:600},
+  {name:"Suriname", code:"SRD", rate:37},
+  {name:"Sweden", code:"SEK", rate:9.5},
+  {name:"Switzerland", code:"CHF", rate:0.92},
+  {name:"Syria", code:"SYP", rate:2500},
+  {name:"Taiwan", code:"TWD", rate:30},
+  {name:"Tajikistan", code:"TJS", rate:11},
+  {name:"Tanzania", code:"TZS", rate:2320},
+  {name:"Thailand", code:"THB", rate:34},
+  {name:"Timor-Leste", code:"USD", rate:1},
+  {name:"Togo", code:"XOF", rate:603},
+  {name:"Tonga", code:"TOP", rate:2.3},
+  {name:"Trinidad and Tobago", code:"TTD", rate:6.8},
+  {name:"Tunisia", code:"TND", rate:3.25},
+  {name:"Turkey", code:"TRY", rate:18},
+  {name:"Turkmenistan", code:"TMT", rate:3.5},
+  {name:"Tuvalu", code:"AUD", rate:1.52},
+  {name:"Uganda", code:"UGX", rate:3720},
+  {name:"Ukraine", code:"UAH", rate:36},
+  {name:"United Arab Emirates", code:"AED", rate:3.67},
+  {name:"United Kingdom", code:"GBP", rate:0.78},
+  {name:"United States", code:"USD", rate:1},
+  {name:"Uruguay", code:"UYU", rate:38},
+  {name:"Uzbekistan", code:"UZS", rate:11100},
+  {name:"Vanuatu", code:"VUV", rate:117},
+  {name:"Vatican City", code:"EUR", rate:0.91},
+  {name:"Venezuela", code:"VES", rate:25},
+  {name:"Vietnam", code:"VND", rate:24000},
+  {name:"Yemen", code:"YER", rate:250},
+  {name:"Zambia", code:"ZMW", rate:18},
+  {name:"Zimbabwe", code:"ZWL", rate:660},
+];
+
+const priceEl = document.getElementById('price');
+const searchInput = document.getElementById('countrySearch');
+const currencyList = document.getElementById('currencyList');
+
+function updateList(filter=''){
+    currencyList.innerHTML='';
+    countries
+        .filter(c=>c.name.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(c=>{
+            const div = document.createElement('div');
+            div.textContent=`${c.name} - ${c.code}`;
+            div.dataset.rate=c.rate;
+            div.dataset.code=c.code;
+            div.addEventListener('click',()=>{
+                priceEl.textContent=`${c.code} ${(basePriceUSD*c.rate).toLocaleString()}`;
+                currencyList.innerHTML='';
+                searchInput.value=c.name;
+            });
+            currencyList.appendChild(div);
+        });
+}
+
+searchInput.addEventListener('input',()=>updateList(searchInput.value));
+searchInput.addEventListener('focus',()=>updateList());
+document.addEventListener('click', (e) => {
+    if (!currencyList.contains(e.target) && e.target !== searchInput) {
+        currencyList.innerHTML = '';
+    }
+});
+
+priceEl.textContent=`USD ${basePriceUSD.toLocaleString()}`;
+</script>
+
+</body>
+</html>

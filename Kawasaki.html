@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kawasaki Motorcycles</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500&display=swap');
+
+        * { transition: all 0.3s ease-in-out; }
+
+        body {
+            margin: 0;
+            font-family: 'Rajdhani', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+            background: #001000;
+        }
+
+        
+        h1 {
+            font-size: 60px;
+            text-align: center;
+            margin-top: 40px;
+            color: #39ff14;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 25px #39ff14, 0 0 50px #00ff00;
+            animation: glow 2s infinite alternate;
+            z-index: 1;
+            position: relative;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #39ff14, 0 0 20px #00ff00; }
+            to { text-shadow: 0 0 25px #39ff14, 0 0 60px #00ff00; }
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(57,255,20,0.15), transparent 60%);
+            animation: moveLight 8s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes moveLight {
+            0% { transform: translateX(-20%) translateY(-10%) rotate(0deg); }
+            50% { transform: translateX(20%) translateY(10%) rotate(180deg); }
+            100% { transform: translateX(-20%) translateY(-10%) rotate(360deg); }
+        }
+
+        .bike-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            justify-items: center;
+            padding: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bike {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bike img {
+            width: 350px;
+            border-radius: 12px;
+            border: 3px solid #39ff14;
+            box-shadow: 0 0 30px rgba(57,255,20,0.5);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0 0 15px rgba(57,255,20,0.4); }
+            to { box-shadow: 0 0 35px rgba(57,255,20,0.9); }
+        }
+
+        .bike img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 60px rgba(57,255,20,1);
+        }
+
+        .bike-name {
+            font-size: 32px;
+            margin-top: 10px;
+            color: #7CFC00;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px #39ff14, 0 0 35px #00ff00;
+            transition: all 0.3s ease;
+        }
+
+        .bike-name:hover {
+            color: white;
+            transform: scale(1.1);
+            text-shadow: 0 0 35px #ffffff;
+        }
+
+        footer {
+            text-align: center;
+            margin: 50px 0;
+            color: #aaa;
+            font-size: 18px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Kawasaki Motorcycles</h1>
+
+    <div class="bike-container">
+        <div class="bike">
+            <img src="h2r.png" alt="Kawasaki H2R">
+            <div class="bike-name">Kawasaki H2R</div>
+        </div>
+
+        <div class="bike">
+            <img src="h2.png" alt="Kawasaki H2">
+            <div class="bike-name">Kawasaki H2</div>
+        </div>
+
+        <div class="bike">
+            <img src="zx10r 2016.png" alt="Kawasaki ZX10R 2016">
+            <div class="bike-name">Kawasaki ZX10R 2016</div>
+        </div>
+
+        <div class="bike">
+            <img src="z1000.png" alt="Kawasaki Z1000 Sugomi">
+            <div class="bike-name">Kawasaki Z1000 Sugomi</div>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Kawasaki Motorcycles | Designed by Oudayl
+    </footer>
+
+</body>
+</html>
